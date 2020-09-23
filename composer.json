@@ -16,7 +16,9 @@
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
-        "lucascudo/laravel-pt-br-localization": "^1.1"
+        "laravelcollective/html": "^6.2",
+        "lucascudo/laravel-pt-br-localization": "^1.1",
+        "yajra/laravel-datatables": "1.5"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
