@@ -67,4 +67,48 @@
 @section('adminlte_js')
     @stack('js')
     @yield('js')
+
+    <script>
+        function excluir(rota) {
+            Swal.fire({
+                title: 'Atenção!',
+                text: "Deseja mesmo excluir?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim',
+                cancelButtonText: 'Não'
+            }).then((result) => {
+                if (result.value === true) {
+                    axios.delete(rota)
+                        .then(function (res) {
+                            $('#' + Object.keys(window.LaravelDataTables)[0]).DataTable().ajax.reload()
+
+                            Swal.fire('Sucesso!', 'Excluído com sucesso', 'success')
+                        })
+                        .catch(function (err) {
+                            Swal.fire('Sucesso!', 'Ocorreu um erro ao excluir', 'success')
+                        })
+                    
+                }
+            })
+        }
+    </script>
+
+    @if(Session::has('sucesso') || Session::has('falha'))
+        <script>
+            Swal.fire({
+                text: '{{ Session::get('sucesso') ?? Session::get('falha') }}',
+                @if (Session::has('sucesso'))
+                    icon: 'success',
+                @else
+                    icon: 'error',
+                @endif
+                timer: 2000,
+                showConfirmButton: false,
+                timerProgressBar: true
+            })
+        </script>
+    @endif
 @stop
